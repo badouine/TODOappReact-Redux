@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react"; 
 import { connect } from "react-redux";
-import { addTodos, removeTodos, updateTodos } from "../redux/reducer";
+import { addTodos, removeTodos, updateTodos, completeTodos } from "../redux/reducer";
 
 
 const mapStateToProps = (state) => {
@@ -13,9 +13,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addTodo: (obj) => dispatch(addTodos(obj)),
         removeTodo: (id) => dispatch(removeTodos(id)),
-        updateTodo: (obj) => dispatch(updateTodos(obj))
-    }
-}
+        updateTodo: (obj) => dispatch(updateTodos(obj)),
+        completeTodo: (id) => dispatch(completeTodos(id)),
+    };
+};
 
 const Todos = (props) => {
     const [todo, setTodo] = useState("");
@@ -62,8 +63,9 @@ const Todos = (props) => {
                                  defaultValue={item.item}
                                  onKeyPress={(e) => update(item.id, inputRef.current.value, e)}
                                  />
-                                <button onClick={() => changeFocus() }>Edit</button>
-                                 <button onClick={() => props.removeTodo(item.id)}>Delete</button>{" "}
+                                <button onClick={() => changeFocus()}>Edit</button>
+                                <button onClick={() => props.completeTodo(item.id)}>Complete</button>
+                                <button onClick={() => props.removeTodo(item.id)}>Delete</button>{" "}
                             </li>;
                 })}
             </ul>
