@@ -43,7 +43,7 @@ const Todos = (props) => {
             <ul>
                 {props.todos.map((item) => {
                     return <li key={item.id}>
-                                 <textarea ref={inputRef} disabled={inputRef}>{item.item}</textarea>
+                                 <textarea ref={inputRef} disabled={inputRef} defaultValue={item.item}/>
                         
                                  <button onClick={() => props.removeTodo(item.id)}>Delete</button>{" "}
                             </li>;
