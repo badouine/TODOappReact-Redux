@@ -1,28 +1,29 @@
-import './App.css';
-import Todos from "./components/Todos"
+import "./css/main.css";
+import DisplayTodos from "./components/DisplayTodos";
+import Todos from "./components/Todos";
 
+import { motion } from "framer-motion";
 function App() {
   return (
     <div className="App">
-      <Todos/>
+      <motion.h1
+        initial={{ y: -200 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", duration: 0.5 }}
+        whileHover={{ scale: 1.1 }}
+      >
+        Todo App
+      </motion.h1>
+      <motion.div
+        initial={{ y: 1000 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", duration: 1 }}
+      >
+        <Todos />
+        <DisplayTodos />
+      </motion.div>
     </div>
   );
 }
 
 export default App;
-
-
-/**
- * 
- * Instructions
-Create  the following component:
-Addtask
-ListTask
-Task
-Every task should have the following attributes:I d, description, isDone
-The user should be:
-Able to add a newTodo
-Filter the tasks by (done/not)
-Edit a task
-
-*/
